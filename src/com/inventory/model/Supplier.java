@@ -1,4 +1,4 @@
-tpackage com.inventory.model;
+package com.inventory.model;
 
 import java.io.Serializable;
 
