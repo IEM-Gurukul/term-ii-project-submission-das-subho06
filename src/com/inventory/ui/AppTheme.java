@@ -2,12 +2,11 @@ package com.inventory.ui;
 
 
 
-import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
+import javax.swing.*;
 
 
- */
+ 
 public class AppTheme {
 
     
