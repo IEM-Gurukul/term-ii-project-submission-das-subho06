@@ -1,14 +1,13 @@
 package com.inventory.ui;
-
 import com.inventory.exception.ValidationException;
 import com.inventory.model.Category;
 import com.inventory.service.CategoryService;
-
+import java.awt.*;
+import java.util.Optional;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.util.Optional;
+import javax.swing.table.TableRowSorter;
 
 
 public class CategoryPanel extends JPanel {
@@ -74,6 +73,9 @@ public class CategoryPanel extends JPanel {
 
         add(scroll, BorderLayout.CENTER);
         add(actionBar, BorderLayout.SOUTH);
+
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(tableModel);
+        table.setRowSorter(sorter);
     }
 
     private void styleTable() {

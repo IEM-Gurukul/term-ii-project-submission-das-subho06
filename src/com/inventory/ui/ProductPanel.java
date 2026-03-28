@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 
 public class ProductPanel extends JPanel {
@@ -116,6 +117,8 @@ public class ProductPanel extends JPanel {
         tableModel = new DefaultTableModel(COLUMNS, 0) {
             @Override
             public boolean isCellEditable(int row, int col) { return false; }
+
+
         };
 
         table = new JTable(tableModel);
@@ -164,6 +167,10 @@ public class ProductPanel extends JPanel {
                 return c;
             }
         });
+
+
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(tableModel);
+        table.setRowSorter(sorter);
     }
 
     private JPanel buildActionBar() {
