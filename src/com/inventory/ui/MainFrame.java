@@ -82,7 +82,7 @@ public class MainFrame extends JFrame {
         titlePanel.setBorder(BorderFactory.createEmptyBorder(24, 20, 24, 20));
         titlePanel.setMaximumSize(new Dimension(220, 80));
 
-        JLabel titleLabel = new JLabel("📦 InvenTrack");
+        JLabel titleLabel = new JLabel("InvenTrack");
         titleLabel.setFont(AppTheme.FONT_SIDEBAR_TITLE);
         titleLabel.setForeground(Color.WHITE);
         titlePanel.add(titleLabel, BorderLayout.CENTER);

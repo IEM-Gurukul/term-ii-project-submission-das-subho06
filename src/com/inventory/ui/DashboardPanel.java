@@ -97,7 +97,7 @@ public class DashboardPanel extends JPanel {
         centerPanel.add(Box.createVerticalStrut(24));
 
         
-        JLabel lowTitle = new JLabel("⚠  Products Needing Restock");
+        JLabel lowTitle = new JLabel("  Products Needing Restock");
         lowTitle.setFont(AppTheme.FONT_HEADING);
         lowTitle.setForeground(AppTheme.TEXT_PRIMARY);
         

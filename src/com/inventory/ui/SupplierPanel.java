@@ -41,7 +41,7 @@ public class SupplierPanel extends JPanel {
         title.setForeground(AppTheme.TEXT_PRIMARY);
         header.add(title, BorderLayout.WEST);
 
-        JButton addBtn = AppTheme.createPrimaryButton("＋ Add Supplier");
+        JButton addBtn = AppTheme.createPrimaryButton(" Add Supplier");
         addBtn.setPreferredSize(new Dimension(150, 36));
         addBtn.addActionListener(e -> openAddDialog());
         header.add(addBtn, BorderLayout.EAST);
@@ -63,8 +63,8 @@ public class SupplierPanel extends JPanel {
         actionBar.setBackground(AppTheme.CONTENT_BG);
         actionBar.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 
-        JButton editBtn   = AppTheme.createButton("✏  Edit",   new Color(59, 130, 246), Color.WHITE);
-        JButton deleteBtn = AppTheme.createDangerButton("✕  Delete");
+        JButton editBtn   = AppTheme.createButton("  Edit",   new Color(59, 130, 246), Color.WHITE);
+        JButton deleteBtn = AppTheme.createDangerButton("  Delete");
         editBtn.setPreferredSize(new Dimension(110, 34));
         deleteBtn.setPreferredSize(new Dimension(110, 34));
 

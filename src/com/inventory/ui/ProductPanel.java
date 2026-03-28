@@ -7,16 +7,17 @@ import com.inventory.model.Supplier;
 import com.inventory.service.CategoryService;
 import com.inventory.service.ProductService;
 import com.inventory.service.SupplierService;
+import com.inventory.util.CsvExporter;
 import java.awt.*;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableRowSorter;
-
-
 public class ProductPanel extends JPanel {
 
     private ProductService  productService  = new ProductService();
@@ -52,7 +53,7 @@ public class ProductPanel extends JPanel {
         titleLabel.setForeground(AppTheme.TEXT_PRIMARY);
         headerPanel.add(titleLabel, BorderLayout.WEST);
 
-        JButton addBtn = AppTheme.createPrimaryButton("＋ Add Product");
+        JButton addBtn = AppTheme.createPrimaryButton(" Add Product");
         addBtn.setPreferredSize(new Dimension(140, 36));
         addBtn.addActionListener(e -> openAddDialog());
         headerPanel.add(addBtn, BorderLayout.EAST);
@@ -122,6 +123,7 @@ public class ProductPanel extends JPanel {
         };
 
         table = new JTable(tableModel);
+        
         table.setFont(AppTheme.FONT_BODY);
         table.setRowHeight(36);
         table.setShowGrid(false);
@@ -132,10 +134,11 @@ public class ProductPanel extends JPanel {
         table.setSelectionForeground(AppTheme.TEXT_PRIMARY);
 
         table.getTableHeader().setFont(AppTheme.FONT_BUTTON);
-        table.getTableHeader().setBackground(AppTheme.TABLE_HEADER_BG);
-        table.getTableHeader().setForeground(AppTheme.TABLE_HEADER_FG);
+        // table.getTableHeader().setBackground(AppTheme.TABLE_HEADER_BG);
+        // table.getTableHeader().setForeground(AppTheme.TABLE_HEADER_FG);
         table.getTableHeader().setPreferredSize(new Dimension(0, 40));
         table.getTableHeader().setReorderingAllowed(false);
+        
 
         int[] widths = {70, 200, 120, 140, 60, 90, 80};
         for (int i = 0; i < widths.length; i++) {
@@ -153,7 +156,7 @@ public class ProductPanel extends JPanel {
 
                 if (!selected) {
                     String status = (String) t.getModel().getValueAt(row, 6);
-                    boolean isLow = "⚠ Low".equals(status);
+                    boolean isLow = "Low".equals(status);
 
                     if (isLow) {
                         c.setBackground(AppTheme.LOW_STOCK_BG);
@@ -178,21 +181,46 @@ public class ProductPanel extends JPanel {
         bar.setBackground(AppTheme.CONTENT_BG);
         bar.setBorder(BorderFactory.createEmptyBorder(4, 0, 0, 0));
 
-        JButton editBtn    = AppTheme.createButton("✏  Edit",    new Color(59, 130, 246), Color.WHITE);
-        JButton deleteBtn  = AppTheme.createDangerButton("✕  Delete");
-        JButton restockBtn = AppTheme.createSuccessButton("↑  Restock");
+        JButton editBtn    = AppTheme.createButton("  Edit",    new Color(59, 130, 246), Color.WHITE);
+        JButton deleteBtn  = AppTheme.createDangerButton("  Delete");
+        JButton restockBtn = AppTheme.createSuccessButton("  Restock");
+        JButton exportBtn = AppTheme.createButton("  Export CSV", new Color(15, 118, 110), Color.WHITE); // teal color
 
         editBtn.setPreferredSize(new Dimension(110, 34));
         deleteBtn.setPreferredSize(new Dimension(110, 34));
         restockBtn.setPreferredSize(new Dimension(110, 34));
+        exportBtn.setPreferredSize(new Dimension(130, 34));
 
         editBtn.addActionListener(e -> openEditDialog());
         deleteBtn.addActionListener(e -> deleteSelected());
         restockBtn.addActionListener(e -> openRestockDialog());
+        exportBtn.addActionListener(e -> {
+    try {
+        // Call the exporter — it returns the file path where CSV was saved
+        String filePath = CsvExporter.exportProducts(
+            productService, categoryService, supplierService
+        );
+
+        // Tell the user exactly where their file is
+        JOptionPane.showMessageDialog(this,
+            "Inventory exported successfully!\n\nSaved to:\n" + filePath,
+            "Export Complete ",
+            JOptionPane.INFORMATION_MESSAGE);
+
+    } catch (IOException ex) {
+        // IOException = file writing problem (disk full, no permission, etc.)
+        JOptionPane.showMessageDialog(this,
+            "Failed to export:\n" + ex.getMessage(),
+            "Export Error",
+            JOptionPane.ERROR_MESSAGE);
+    }
+});
+        
 
         bar.add(editBtn);
         bar.add(deleteBtn);
         bar.add(restockBtn);
+        bar.add(exportBtn);
         return bar;
     }
 

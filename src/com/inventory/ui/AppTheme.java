@@ -1,12 +1,9 @@
 package com.inventory.ui;
 
 
-
 import java.awt.*;
 import javax.swing.*;
-
-
- 
+import javax.swing.table.DefaultTableCellRenderer;
 public class AppTheme {
 
     
@@ -40,7 +37,7 @@ public class AppTheme {
 
     // Table header (dark slate)
     public static final Color TABLE_HEADER_BG   = new Color(51,  65,  85);
-    public static final Color TABLE_HEADER_FG   = Color.WHITE;
+    public static final Color TABLE_HEADER_FG   = Color.BLACK;
 
     // Alternating row stripes in tables (very subtle)
     public static final Color TABLE_STRIPE      = new Color(248, 250, 252);
@@ -59,7 +56,35 @@ public class AppTheme {
     public static final Font FONT_SIDEBAR_TITLE = new Font("Segoe UI", Font.BOLD, 16);
     public static final Font FONT_STAT_NUMBER  = new Font("Segoe UI", Font.BOLD,  28);
 
-    
+    public static void styleTableHeader(JTable table) {
+    table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+        @Override
+        public Component getTableCellRendererComponent(
+                JTable t, Object value, boolean isSelected,
+                boolean hasFocus, int row, int column) {
+
+            // Call super to get a configured JLabel (DefaultTableCellRenderer IS a JLabel)
+            JLabel label = (JLabel) super.getTableCellRendererComponent(
+                    t, value, isSelected, hasFocus, row, column);
+
+            // Force our colors — these will NOT be overridden by the L&F
+            label.setBackground(TABLE_HEADER_BG);
+            label.setForeground(TABLE_HEADER_FG);
+            label.setFont(FONT_BUTTON);
+
+            // setOpaque(true) = "paint the background color"
+            // Without this, the background is transparent and L&F shows through
+            label.setOpaque(true);
+
+            // Center-align text and add padding
+            label.setHorizontalAlignment(SwingConstants.LEFT);
+            label.setBorder(BorderFactory.createEmptyBorder(0, 12, 0, 12));
+
+            return label;
+        }
+    });
+}
+
     public static JButton createButton(String text, Color bgColor, Color fgColor) {
         JButton button = new JButton(text);
         button.setFont(FONT_BUTTON);

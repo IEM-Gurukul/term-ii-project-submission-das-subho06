@@ -67,7 +67,7 @@ public class LowStockPanel extends JPanel {
         titleStack.setLayout(new BoxLayout(titleStack, BoxLayout.Y_AXIS));
         titleStack.setBackground(AppTheme.CONTENT_BG);
 
-        JLabel titleLabel = new JLabel("⚠  Low Stock Alerts");
+        JLabel titleLabel = new JLabel("  Low Stock Alerts");
         titleLabel.setFont(AppTheme.FONT_TITLE);
         titleLabel.setForeground(AppTheme.DANGER); // Red title — signals urgency
 
@@ -84,7 +84,7 @@ public class LowStockPanel extends JPanel {
 
         // Right side: Refresh button
         JButton refreshBtn = AppTheme.createButton(
-            "↻  Refresh", new Color(100, 116, 139), Color.WHITE
+            "  Refresh", new Color(100, 116, 139), Color.WHITE
         );
         refreshBtn.setPreferredSize(new Dimension(110, 36));
         // When clicked, refresh the table to get latest data from files
@@ -160,7 +160,7 @@ public class LowStockPanel extends JPanel {
 
         table.getTableHeader().setFont(AppTheme.FONT_BUTTON);
         table.getTableHeader().setBackground(new Color(153, 27, 27)); // deep red header
-        table.getTableHeader().setForeground(Color.WHITE);
+        table.getTableHeader().setForeground(Color.BLACK);
         table.getTableHeader().setPreferredSize(new Dimension(0, 40));
         table.getTableHeader().setReorderingAllowed(false);
 
@@ -207,7 +207,7 @@ public class LowStockPanel extends JPanel {
         bar.setBackground(AppTheme.CONTENT_BG);
         bar.setBorder(BorderFactory.createEmptyBorder(8, 0, 0, 0));
 
-        JButton restockBtn = AppTheme.createSuccessButton("↑  Restock Selected");
+        JButton restockBtn = AppTheme.createSuccessButton("  Restock Selected");
         restockBtn.setPreferredSize(new Dimension(160, 36));
         restockBtn.addActionListener(e -> openRestockDialog());
 
@@ -238,10 +238,10 @@ public class LowStockPanel extends JPanel {
 
         // Update summary label
         if (lowStockList.isEmpty()) {
-            summaryLabel.setText("✓ All products are sufficiently stocked.");
+            summaryLabel.setText(" All products are sufficiently stocked.");
             summaryLabel.setForeground(AppTheme.SUCCESS);
         } else {
-            summaryLabel.setText("⚠  " + lowStockList.size() +
+            summaryLabel.setText("  " + lowStockList.size() +
                 " product(s) need restocking immediately.");
             summaryLabel.setForeground(AppTheme.DANGER);
         }
@@ -306,7 +306,7 @@ public class LowStockPanel extends JPanel {
 
             JOptionPane.showMessageDialog(this,
                 productName + " restocked to " + newQty + " units.",
-                "Restocked ✓", JOptionPane.INFORMATION_MESSAGE);
+                "Restocked ", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,
