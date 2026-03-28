@@ -1,8 +1,8 @@
 package com.inventory.ui;
 
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 
 public class MainFrame extends JFrame {
@@ -15,6 +15,7 @@ public class MainFrame extends JFrame {
     private ProductPanel    productPanel;
     private CategoryPanel   categoryPanel;
     private SupplierPanel   supplierPanel;
+    private LowStockPanel lowStockPanel;
 
     private JButton activeButton;
 
@@ -57,11 +58,12 @@ public class MainFrame extends JFrame {
         productPanel   = new ProductPanel();
         categoryPanel  = new CategoryPanel();
         supplierPanel  = new SupplierPanel();
-
+        lowStockPanel = new LowStockPanel();
         contentPanel.add(dashboardPanel, "DASHBOARD");
         contentPanel.add(productPanel,   "PRODUCTS");
         contentPanel.add(categoryPanel,  "CATEGORIES");
         contentPanel.add(supplierPanel,  "SUPPLIERS");
+        contentPanel.add(lowStockPanel, "LOW_STOCK");
 
         add(contentPanel, BorderLayout.CENTER);
     }
@@ -95,10 +97,12 @@ public class MainFrame extends JFrame {
 
         sidebar.add(Box.createVerticalStrut(16));
 
-        JButton dashBtn     = buildNavButton("🏠  Dashboard",  "DASHBOARD");
-        JButton productBtn  = buildNavButton("📦  Products",   "PRODUCTS");
-        JButton categoryBtn = buildNavButton("🗂  Categories", "CATEGORIES");
-        JButton supplierBtn = buildNavButton("🚚  Suppliers",  "SUPPLIERS");
+
+        JButton dashBtn     = buildNavButton(" Dashboard",  "DASHBOARD");
+        JButton productBtn  = buildNavButton(" Products",   "PRODUCTS");
+        JButton categoryBtn = buildNavButton(" Categories", "CATEGORIES");
+        JButton supplierBtn = buildNavButton(" Suppliers",  "SUPPLIERS");
+        JButton lowStockBtn = buildNavButton(" Low Stock", "LOW_STOCK");
 
         markActive(dashBtn);
         activeButton = dashBtn;
@@ -110,6 +114,8 @@ public class MainFrame extends JFrame {
         sidebar.add(categoryBtn);
         sidebar.add(Box.createVerticalStrut(4));
         sidebar.add(supplierBtn);
+        sidebar.add(Box.createVerticalStrut(4));
+        sidebar.add(lowStockBtn);
 
         sidebar.add(Box.createVerticalGlue());
 
@@ -158,6 +164,7 @@ public class MainFrame extends JFrame {
             case "PRODUCTS":    productPanel.refreshTable();    break;
             case "CATEGORIES":  categoryPanel.refreshTable();   break;
             case "SUPPLIERS":   supplierPanel.refreshTable();   break;
+            case "LOW_STOCK":   lowStockPanel.refreshTable();   break;
         }
 
         
