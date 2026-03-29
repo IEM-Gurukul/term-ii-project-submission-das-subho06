@@ -92,6 +92,21 @@ No external libraries or dependencies required — uses Java Standard Library on
 
 ---
 
+## Screenshots
+### Dashboard
+![Dashboard](src/images/Dashboard.png)
+
+### Product Panel
+![Product Panel](src/images/Products.png)
+
+### Low Stock Alert
+![Low Stock](src/images/LowStock.png)
+
+### Category Panel
+![Category Panel](src/images/Categories.png)
+
+### Supplier Panel
+![Supplier Panel](src/images/Supplier.png)
 
 
 ## Git Discipline Notes

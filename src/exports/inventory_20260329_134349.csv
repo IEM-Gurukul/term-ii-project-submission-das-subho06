@@ -1,0 +1,13 @@
+Product ID,Name,Description,Category,Supplier,Selling Price,Cost Price,Quantity,Low Stock Threshold,Status,Date Added
+PRD001,Samsung Galaxy S24,Latest flagship smartphone,Electronics,Samsung India,79999.00,60000.00,50,10,OK,2026-03-26
+PRD002,Basmati Rice 5kg,Premium long-grain basmati rice,Groceries,Fresh Farms Co.,450.00,300.00,200,30,OK,2026-03-26
+PRD003,USB-C Charging Cable,2 meter fast charging cable,Electronics,Samsung India,599.00,200.00,5,10,LOW STOCK,2026-03-26
+PRD004,Jacket,very good jacket,Clothing,Trends,1000.00,900.00,101,100,OK,2026-03-28
+PRD005,Thumbs Up,,Cold Drinks,CocaCola,200.00,100.00,0,5,LOW STOCK,2026-03-29
+
+
+--- SUMMARY ---
+Total Products,5
+Total Inventory Value,4193945.00
+Low Stock Items,2
+Export Date,29-03-2026 13:43:50
